@@ -1,0 +1,46 @@
+**Part extraction DATA AGGREGATION**
+- SQL TASK
+-- PART EXTRACTION USE CASE (DATA AGGREGATIONS)
+-- How many orders were placed each year 
+
+--full extraction from order(AGG) 
+SELECT 
+      OrderDate,
+	  COUNT(*) Monthly_orders
+	  FROM Sales.Orders
+	  GROUP BY OrderDate
+
+--Monthly orders query(AGG)
+SELECT
+     MONTH(OrderDate),   
+	 COUNT(*) NROFORDERS
+	 FROM Sales.Orders
+	 GROUP BY MONTH(OrderDate)
+
+-- If you want month name 
+SELECT
+     DATENAME(month, OrderDate) as month_name,   
+	 COUNT(*) NROFORDERS
+	 FROM Sales.Orders
+	 GROUP BY DATENAME(month, OrderDate)
+
+--This is for the yearly query (AGG)
+SELECT
+     YEAR(OrderDate),   
+	 COUNT(*) NROFORDERS
+	 FROM Sales.Orders
+	 GROUP BY YEAR(OrderDate)
+
+--  PART EXTRACTION USE CASE (Data Filtering)
+-- SQL TASK = Show all orders that were placed during the month of february
+
+-- first of all we gonna check the entire table 
+
+SELECT * FROM Sales.Orders
+--Then we add the filter 
+
+SELECT * 
+FROM Sales.Orders
+WHERE MONTH(OrderDate) = 2
+
+
