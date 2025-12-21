@@ -1,0 +1,60 @@
+-- WHAT IS DATE FORMAT ??
+2 0 2 5  - 0 8  - 2 0      1 8 : 5 5 : 4 5
+-------    ----   ----     ----  ----  -----
+YEAR      MONTH   DAY     HOURS  MIN    SECONDS
+YYYY       MM      dd       HH :  mm  :  ss
+----------------------------------------------
+Format specific    ^ date time format
+
+-- WHAT ARE FORMATTING AND CASTING ??
+= Changing the format of a value from one to another | change how data looks like 
+
+FORMATING (THERE ARE TWO FORMAT [1) MM/dd/yy = 08/20/25] [2) MMM / YYYY = Aug 2025])
+
+CASTING = Changing the data type from one to another 
+casting example = STRING(1,2,3) > NUMBER(1,2,3), DATE(2025/20/10) > STRING(2025/10/10)--
+
+--FORMAT() FUNCTION = Formats a date or time value 
+FORMAT SYNTAX(Value , format,  [culture])<OPTIONAL>
+EXAMPLE :
+-- EXAMPLE FOR FORMAT DATE 
+SELECT 
+      OrderDate,
+	  CreationTime,
+	  FORMAT(CreationTime, 'dd') as dd,  -- if you want the number of date 
+	  FORMAT(CreationTime, 'ddd') as dd, -- if you want the name of the day's date(short) 
+	  FORMAT(CreationTime, 'dddd') as ddddd,-- if you want the name of the day's date (full)
+	  FORMAT(CreationTime, 'MM') as MM,  -- if you want the number of month
+	  FORMAT(CreationTime, 'MMM') as MMM, -- if you want the name of the month(short)
+	  FORMAT(CreationTime, 'MMMM') as MMMM -- if you want the name of the month(full)
+FROM Sales.Orders
+
+-- SQL TASK (show ceation time)
+-- show creation time using this format(DAY WED JAN Q11 2025 12:34:55 PM)
+SELECT 
+      OrderDate,
+	  CreationTime,
+	  FORMAT(CreationTime, 'ddd MMMM') + FORMAT(CreationTime, 'yyyyy hh:mm:ss tt')
+	  as day_name
+FROM Sales.Orders
+
+--Formatting use cases DATAA AGGREGATION 
+SELECT 
+FORMAT(OrderDate, 'MMM yy') OrderDate,
+COUNT(*)
+FROM Sales.Orders
+GROUP BY FORMAT(OrderDate, 'MMM yy') 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
